@@ -1,0 +1,10 @@
+{
+	"id": "Illusion",
+	"name": "Illusion",
+	"display_name": "Illusion",
+	"author": ["Jonathan"],
+	"description": "Better Pixel Smoothing for Balatro",
+	"prefix": "Illusion",
+	"main_file": "smods.lua",
+	"version": "0.1.0"
+}
