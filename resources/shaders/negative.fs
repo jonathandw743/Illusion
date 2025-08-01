@@ -4,6 +4,8 @@
 	#define MY_HIGHP_OR_MEDIUMP mediump
 #endif
 
+#ifdef PIXEL
+
 extern MY_HIGHP_OR_MEDIUMP vec2 negative;
 extern MY_HIGHP_OR_MEDIUMP number dissolve;
 extern MY_HIGHP_OR_MEDIUMP number time;
@@ -94,9 +96,26 @@ vec4 HSL(vec4 c)
 	return hsl;
 }
 
+vec2 fast_aa(vec2 uv, vec2 texture_pixel_size, vec2 fwidth_uv) {
+    vec2 closest_corner = uv;
+ 	closest_corner /= texture_pixel_size;
+ 	// round is buggy
+ 	//closest_corner = round(closest_corner);
+ 	closest_corner = floor(closest_corner + 0.5);
+ 	closest_corner *= texture_pixel_size;
+
+ 	vec2 d = uv;
+ 	d += texture_pixel_size * 0.5;
+ 	d = mod(d, texture_pixel_size);
+ 	d -= texture_pixel_size * 0.5;
+ 	d /= fwidth_uv;
+
+ 	return closest_corner + clamp(d * 1.0, -0.5, 0.5) * texture_pixel_size;
+}
+
 vec4 effect( vec4 colour, Image texture, vec2 texture_coords, vec2 screen_coords )
 {
-    vec4 tex = Texel(texture, texture_coords);
+    vec4 tex = Texel( texture, fast_aa(texture_coords, 1.0 / image_details, fwidth(texture_coords)));
 	vec2 uv = (((texture_coords)*(image_details)) - texture_details.xy*texture_details.ba)/texture_details.ba;
 
     vec4 SAT = HSL(tex);
@@ -112,6 +131,8 @@ vec4 effect( vec4 colour, Image texture, vec2 texture_coords, vec2 screen_coords
 		tex[3] = tex[3]/3.;
 	return dissolve_mask(tex*colour, texture_coords, uv);
 }
+
+#endif // PIXEL
 
 extern MY_HIGHP_OR_MEDIUMP vec2 mouse_screen_pos;
 extern MY_HIGHP_OR_MEDIUMP float hovering;
