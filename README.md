@@ -26,10 +26,10 @@ The images in `resources/textures` are processed versions of the vanilla Balatro
 
 See the line of dark pixels along the top edge of the cards in the top image (before) compared to the bottom image (after):
 
-<img src="assets/edgebna.png" alt="Edge Before and After" width="100%">
+<img src="assets/edgebna.big.png" alt="Edge Before and After" width="100%">
 
 Balatro uses double resolution sprite atlases with a linear sampler to achieve pixel smoothing. The effectiveness of this method is resolution-dependent: at high resolutions, sprites will look blurry and at low resolutions. [readabletro](https://github.com/bladeSk/readabletro) replaces Balatro's pixel art with smoothed sprites. This mod retains the pixel art.
 
 Left before, right after (captured at 4k):
 
-<img src="assets/aabna.png" alt="AA Before and After" width="100%">
+<img src="assets/aabna.big.png" alt="AA Before and After" width="100%">
