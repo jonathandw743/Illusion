@@ -4,6 +4,8 @@
 	#define MY_HIGHP_OR_MEDIUMP mediump
 #endif
 
+#ifdef PIXEL
+
 extern MY_HIGHP_OR_MEDIUMP vec2 booster;
 extern MY_HIGHP_OR_MEDIUMP number dissolve;
 extern MY_HIGHP_OR_MEDIUMP number time;
@@ -71,7 +73,7 @@ vec2 fast_aa(vec2 uv, vec2 texture_pixel_size, vec2 fwidth_uv) {
 
 vec4 effect( vec4 colour, Image texture, vec2 texture_coords, vec2 screen_coords )
 {
-    MY_HIGHP_OR_MEDIUMP tex = Texel( texture, fast_aa(texture_coords, 1.0 / image_details, fwidth(texture_coords)));
+    MY_HIGHP_OR_MEDIUMP vec4 tex = Texel( texture, fast_aa(texture_coords, 1.0 / image_details, fwidth(texture_coords)));
     MY_HIGHP_OR_MEDIUMP vec2 uv = (((texture_coords)*(image_details)) - texture_details.xy*texture_details.ba)/texture_details.ba;
 
     MY_HIGHP_OR_MEDIUMP number low = min(tex.r, min(tex.g, tex.b));
@@ -95,6 +97,8 @@ vec4 effect( vec4 colour, Image texture, vec2 texture_coords, vec2 screen_coords
 
     return dissolve_mask(tex*colour, texture_coords, uv);
 }
+
+#endif // PIXEL
 
 extern MY_HIGHP_OR_MEDIUMP vec2 mouse_screen_pos;
 extern MY_HIGHP_OR_MEDIUMP float hovering;
