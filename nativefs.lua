@@ -20,6 +20,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ]]--
 
+---@diagnostic disable
+
 local ffi, bit = require('ffi'), require('bit')
 local C = ffi.C
 

@@ -67,7 +67,8 @@ vec2 fast_aa(vec2 uv, vec2 texture_pixel_size, vec2 fwidth_uv) {
  	d -= texture_pixel_size * 0.5;
  	d /= fwidth_uv;
 
- 	return closest_corner + clamp(d * 1.0, -0.5, 0.5) * texture_pixel_size;
+    // d * 0.5 from testing, not usually necessary
+ 	return closest_corner + clamp(d * 0.5, -0.5, 0.5) * texture_pixel_size;
 }
 
 vec4 effect( vec4 colour, Image texture, vec2 texture_coords, vec2 screen_coords )
