@@ -1,6 +1,6 @@
 # Illusion
 
-Pedantic graphical enhancements for Balatro
+Pedantic graphical enhancements for Balatro.
 
 ## Requirements
 
