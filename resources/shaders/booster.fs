@@ -51,9 +51,27 @@ vec4 dissolve_mask(vec4 tex, vec2 texture_coords, vec2 uv)
     return vec4(shadow ? vec3(0.,0.,0.) : tex.xyz, res > adjusted_dissolve ? (shadow ? tex.a*0.3: tex.a) : .0);
 }
 
+vec2 fast_aa(vec2 uv, vec2 texture_pixel_size, vec2 fwidth_uv) {
+    vec2 closest_corner = uv;
+ 	closest_corner /= texture_pixel_size;
+ 	// round is buggy
+ 	//closest_corner = round(closest_corner);
+ 	closest_corner = floor(closest_corner + 0.5);
+ 	closest_corner *= texture_pixel_size;
+
+ 	vec2 d = uv;
+ 	d += texture_pixel_size * 0.5;
+ 	d = mod(d, texture_pixel_size);
+ 	d -= texture_pixel_size * 0.5;
+ 	d /= fwidth_uv;
+
+    // d * 0.5 from testing, not usually necessary
+ 	return closest_corner + clamp(d * 0.5, -0.5, 0.5) * texture_pixel_size;
+}
+
 vec4 effect( vec4 colour, Image texture, vec2 texture_coords, vec2 screen_coords )
 {
-    MY_HIGHP_OR_MEDIUMP vec4 tex = Texel( texture, texture_coords);
+    MY_HIGHP_OR_MEDIUMP tex = Texel( texture, fast_aa(texture_coords, 1.0 / image_details, fwidth(texture_coords)));
     MY_HIGHP_OR_MEDIUMP vec2 uv = (((texture_coords)*(image_details)) - texture_details.xy*texture_details.ba)/texture_details.ba;
 
     MY_HIGHP_OR_MEDIUMP number low = min(tex.r, min(tex.g, tex.b));
