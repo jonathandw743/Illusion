@@ -24,4 +24,12 @@ In Love2D, when there is a transparent and opaque pixel next to each other in a 
 
 The images in `resources/textures` are processed versions of the vanilla Balatro sprite atlases. These have the transparent pixels recolorized using [alpha_fixer](https://github.com/jonathandw743/alpha_fixer). You can use this tool if you want to fix the transparency on the edges of your own modded images.
 
+See the line of dark pixels along the top edge of the cards in the top image (before) compared to the bottom image (after):
+
+![Edge Before and After](assets/edgebna.png)
+
 Balatro uses double resolution sprite atlases with a linear sampler to achieve pixel smoothing. The effectiveness of this method is resolution-dependent: at high resolutions, sprites will look blurry and at low resolutions. [readabletro](https://github.com/bladeSk/readabletro) replaces Balatro's pixel art with smoothed sprites. This mod retains the pixel art.
+
+Left before, right after (captured at 4k):
+
+![AA Before and After](assets/aabna.png)
