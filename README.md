@@ -33,3 +33,7 @@ Balatro uses double resolution sprite atlases with a linear sampler to achieve p
 Left before, right after (captured at 4k):
 
 <img src="assets/aabna.big.png" alt="AA Before and After" width="100%">
+
+## Contributing
+
+Any suggestions (create an issue) or pull requests are welcome. This mod is intended to maintain the vanilla graphics of Balatro.
