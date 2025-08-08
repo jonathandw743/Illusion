@@ -22,7 +22,7 @@ Pedantic graphical enhancements for Balatro.
 
 In Love2D, when there is a transparent and opaque pixel next to each other in a texture, and there is interpolation between them, the RGB of the transparent pixel (stil stored in the .png) will be interpolated with the RGB of the opaque pixel. This means that if there is an opaque white pixel next to a transparent pixel whose RGB values happen to be 0, 0, 0, the interpolated colour will be translucent grey. To fix this, you can set the RGB values of transparent pixels in a texture to the RGB of the nearest opaque pixel.
 
-The images in `resources/textures` are processed versions of the vanilla Balatro sprite atlases. These have the transparent pixels recolorized using [alpha_fixer](https://github.com/jonathandw743/alpha_fixer). You can use this tool if you want to fix the transparency on the edges of your own modded images.
+The images in `resources/textures` are processed versions of the vanilla Balatro sprite atlases. These have the transparent pixels recolorized using [transparency_recolorizer](https://github.com/jonathandw743/transparency_recolorizer). You can use this tool if you want to fix the transparency on the edges of your own modded images.
 
 See the line of dark pixels along the top edge of the cards in the top image (before) compared to the bottom image (after):
 
